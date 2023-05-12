@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Api\UserSubscriptions;
 
 use App\DTO\UserSubscription\SubscribeDTO;
+use App\Entity\User;
 use App\Repository\UserSubscriptionRepository;
 use App\Service\UserSubscription\Manager as UserSubscriptionManager;
 use Exception;
@@ -29,6 +30,7 @@ class UserSubscription extends AbstractController
         }
 
         try {
+            assert($user instanceof User);
             $this->userSubscriptionManager->subscribe(
                 SubscribeDTO::fromRequestContent($subscription_id, $user, $request->getContent())
             );
@@ -47,6 +49,7 @@ class UserSubscription extends AbstractController
         }
 
         try {
+            assert($user instanceof User);
             $this->userSubscriptionManager->unsubscribe($user, $subscription_id);
         } catch (Exception) {
             return $this->json('Bad Request', 400);

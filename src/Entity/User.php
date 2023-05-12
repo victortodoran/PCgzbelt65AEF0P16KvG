@@ -23,6 +23,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private string $email;
 
+    /**
+     * @var string[]
+     */
     #[ORM\Column]
     private array $roles = [];
 
@@ -32,6 +35,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private string $name;
 
+    /**
+     * @var Collection<int, UserSubscription>
+     */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSubscription::class, orphanRemoval: true)]
     private Collection $userSubscriptions;
 
@@ -68,6 +74,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return string[]
+     *
      * @see UserInterface
      */
     public function getRoles(): array
@@ -79,6 +87,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -99,15 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     public function getName(): string
@@ -150,5 +152,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Intentionally left blank
     }
 }

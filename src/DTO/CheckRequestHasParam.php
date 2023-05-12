@@ -9,8 +9,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 trait CheckRequestHasParam
 {
     /**
-     * @param string[] $requestContentAsArray
-     * @param string[] $requiredParams
+     * @param array<string, string> $requestContentAsArray
+     * @param string[]              $requiredParams
      *
      * @throws BadRequestHttpException
      */

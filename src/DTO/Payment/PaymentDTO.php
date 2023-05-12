@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\DTO\Payment;
 
 use App\DTO\CheckRequestHasParam;
+use App\DTO\RequestContentDecoder;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class PaymentDTO
 {
     use CheckRequestHasParam;
+    use RequestContentDecoder;
 
     public function __construct(
         #[Assert\NotBlank(message: 'The \'cardHolderName\' can not be blank.')]
@@ -26,7 +28,7 @@ class PaymentDTO
      */
     public static function createFromRequestContent(string $requestContent): self
     {
-        $requestContentAsArray = json_decode($requestContent, true, 512, JSON_THROW_ON_ERROR);
+        $requestContentAsArray = self::requestContentToArray($requestContent);
         self::checkRequestHasParam($requestContentAsArray, ['cardHolderName', 'cardNumber', 'ccv']);
 
         return new self(

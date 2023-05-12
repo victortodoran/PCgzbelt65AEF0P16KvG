@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\DTO\UserSubscription;
 
 use App\DTO\CheckRequestHasParam;
+use App\DTO\RequestContentDecoder;
 use App\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SubscribeDTO
 {
     use CheckRequestHasParam;
+    use RequestContentDecoder;
 
     public function __construct(
         public readonly int $subscriptionId,
@@ -27,7 +29,7 @@ class SubscribeDTO
      */
     public static function fromRequestContent(int $subscriptionId, User $user, string $requestContent): self
     {
-        $requestContentAsArray = json_decode($requestContent, true, 512, JSON_THROW_ON_ERROR);
+        $requestContentAsArray = self::requestContentToArray($requestContent);
         self::checkRequestHasParam($requestContentAsArray, ['startDate', 'endDate']);
 
         return new self(

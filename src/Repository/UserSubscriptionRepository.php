@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\UserSubscription;
 use App\Entity\UserSubscriptionStatus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,8 @@ class UserSubscriptionRepository extends ServiceEntityRepository
             ->setParameter('status', UserSubscriptionStatus::ACTIVE)
         ;
 
-        return $qb->getQuery()->getOneOrNullResult();
+        $userSubscription = $qb->getQuery()->getOneOrNullResult(Query::HYDRATE_OBJECT);
+
+        return $userSubscription instanceof UserSubscription ? $userSubscription : null;
     }
 }
