@@ -11,12 +11,13 @@ class Processor
 {
     public function __construct(
         private readonly ValidatorInterface $validator
-    ) {}
+    ) {
+    }
 
     /**
      * Dummy Payment Processor
      * ccv starts with 1 -> payment successful
-     * ccv does not start with 1 -> payment failed
+     * ccv does not start with 1 -> payment failed.
      */
     public function processPayment(PaymentDTO $paymentDTO): bool
     {

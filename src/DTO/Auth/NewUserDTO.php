@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\DTO\Auth;
 
 use App\DTO\CheckRequestHasParam;
-use JsonException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class NewUserDTO
@@ -19,10 +18,11 @@ class NewUserDTO
         public readonly string $email,
         #[Assert\NotBlank(message: 'The \'password\' can not be blank.')]
         public readonly string $password
-    ) {}
+    ) {
+    }
 
     /**
-     * @throws JsonException
+     * @throws \JsonException
      */
     public static function fromRequestContent(string $requestContent): self
     {

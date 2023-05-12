@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\SubscriptionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubscriptionRepository::class)]
-#[ORM\Table(name: "subscriptions")]
+#[ORM\Table(name: 'subscriptions')]
 class Subscription
 {
     #[ORM\Id]

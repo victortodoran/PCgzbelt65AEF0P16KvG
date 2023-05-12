@@ -15,7 +15,8 @@ class Payment extends AbstractController
 {
     public function __construct(
         private readonly PaymentProcessor $paymentProcessor
-    ) {}
+    ) {
+    }
 
     #[Route('/api/payment', name: 'app_payment', methods: ['POST'])]
     public function execute(Request $request): JsonResponse
@@ -24,7 +25,7 @@ class Payment extends AbstractController
             return $this->paymentProcessor->processPayment(
                 PaymentDTO::createFromRequestContent($request->getContent())
             ) ? $this->json('Success') : $this->json('Payment Failed', 422);
-        } catch (\Exception ) {
+        } catch (\Exception) {
             return $this->json('Payment Failed', 422);
         }
     }

@@ -8,7 +8,6 @@ use App\Entity\Subscription;
 use App\Entity\User;
 use App\Entity\UserSubscription;
 use App\Entity\UserSubscriptionStatus;
-use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -17,7 +16,8 @@ class AppFixtures extends Fixture
 {
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordHasher
-    ) {}
+    ) {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -33,8 +33,8 @@ class AppFixtures extends Fixture
             $user,
             $subscription,
             UserSubscriptionStatus::ACTIVE,
-            new DateTimeImmutable('2023-01-01'),
-            new DateTimeImmutable('2023-01-31')
+            new \DateTimeImmutable('2023-01-01'),
+            new \DateTimeImmutable('2023-01-31')
         );
         $manager->persist($userSubscription);
         $manager->flush();
@@ -44,8 +44,8 @@ class AppFixtures extends Fixture
         User $user,
         Subscription $subscription,
         UserSubscriptionStatus $userSubscriptionStatus,
-        DateTimeImmutable $startDate,
-        DateTimeImmutable $endDate
+        \DateTimeImmutable $startDate,
+        \DateTimeImmutable $endDate
     ): UserSubscription {
         $userSubscription = new UserSubscription();
         $userSubscription->setUser($user);

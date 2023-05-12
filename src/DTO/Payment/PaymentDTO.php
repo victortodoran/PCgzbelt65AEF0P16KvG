@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\DTO\Payment;
 
 use App\DTO\CheckRequestHasParam;
-use JsonException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class PaymentDTO
@@ -19,10 +18,11 @@ class PaymentDTO
         public readonly string $cardNumber,
         #[Assert\NotBlank(message: 'The \'ccv\' can not be blank.')]
         public readonly string $ccv
-    ) {}
+    ) {
+    }
 
     /**
-     * @throws JsonException
+     * @throws \JsonException
      */
     public static function createFromRequestContent(string $requestContent): self
     {

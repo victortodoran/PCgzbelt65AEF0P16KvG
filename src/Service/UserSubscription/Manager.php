@@ -25,7 +25,8 @@ class Manager
         private readonly EntityManagerInterface $entityManager,
         private readonly UserSubscriptionRepository $userSubscriptionRepository,
         private readonly SubscriptionRepository $subscriptionRepository
-    ) {}
+    ) {
+    }
 
     /**
      * @throws NotFoundException

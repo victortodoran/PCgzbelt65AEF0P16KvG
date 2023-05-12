@@ -18,7 +18,8 @@ class UserSubscription extends AbstractController
     public function __construct(
         private readonly UserSubscriptionRepository $userSubscriptionRepository,
         private readonly UserSubscriptionManager $userSubscriptionManager
-    ) {}
+    ) {
+    }
 
     #[Route('/api/subscriptions/{subscription_id}/subscribe', name: 'app_user_subscriptions_subscribe', methods: ['POST'])]
     public function subscribe(int $subscription_id, Request $request): JsonResponse

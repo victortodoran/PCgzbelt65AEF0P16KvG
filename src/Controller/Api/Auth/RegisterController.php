@@ -17,7 +17,8 @@ class RegisterController extends AbstractController
 {
     public function __construct(
         private readonly Registrant $registrant
-    ) {}
+    ) {
+    }
 
     #[Route('/api/auth/register', name: 'app_auth_register', methods: ['POST'])]
     public function execute(Request $request): JsonResponse

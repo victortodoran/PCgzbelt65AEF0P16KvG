@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserSubscriptionRepository;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: UserSubscriptionRepository::class)]
-#[ORM\Table(name: "user_subscriptions")]
+#[ORM\Table(name: 'user_subscriptions')]
 class UserSubscription
 {
     #[ORM\Id]
@@ -31,10 +30,10 @@ class UserSubscription
     private UserSubscriptionStatus $status;
 
     #[ORM\Column]
-    private DateTimeImmutable $startDate;
+    private \DateTimeImmutable $startDate;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private DateTimeImmutable $endDate;
+    private \DateTimeImmutable $endDate;
 
     public function getId(): int
     {
@@ -77,24 +76,24 @@ class UserSubscription
         return $this;
     }
 
-    public function getStartDate(): DateTimeImmutable
+    public function getStartDate(): \DateTimeImmutable
     {
         return $this->startDate;
     }
 
-    public function setStartDate(DateTimeImmutable $startDate): self
+    public function setStartDate(\DateTimeImmutable $startDate): self
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndDate(): DateTimeImmutable
+    public function getEndDate(): \DateTimeImmutable
     {
         return $this->endDate;
     }
 
-    public function setEndDate(DateTimeImmutable $endDate): self
+    public function setEndDate(\DateTimeImmutable $endDate): self
     {
         $this->endDate = $endDate;
 
