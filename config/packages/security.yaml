@@ -26,9 +26,6 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: app_user_provider
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -40,9 +37,11 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/api/auth/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/auth/register, roles: PUBLIC_ACCESS }
+        - { path: ^/api/subscriptions/me, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/subscriptions/(\d+)/(subscribe|unsubscribe), roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/subscriptions, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
