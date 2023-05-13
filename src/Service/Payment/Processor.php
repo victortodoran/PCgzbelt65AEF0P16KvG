@@ -26,6 +26,6 @@ class Processor
             return false;
         }
 
-        return str_starts_with($paymentDTO->ccv, '1');
+        return str_starts_with($paymentDTO->cvv, '1');
     }
 }
