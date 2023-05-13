@@ -43,3 +43,14 @@ user_subscriptions
 ```
 
 The API should follow REST principles and should return JSON responses.
+
+## Evaluation
+We will evaluate your solution based on the following criteria:
+- Correctness and completeness of the API implementation.
+- Adherence to best practices and design patterns.
+- Code readability and maintainability.
+- Proper use of PHP, Symfony, Doctrine, MySQL.
+- Unit Tests, Application/Functionalc Tests
+- PHPStan lvl 9 - no errors 
+- Clear documentation of the API endpoints and how to use them
+- Timebox 16 hours
