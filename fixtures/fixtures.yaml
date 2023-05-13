@@ -1,0 +1,28 @@
+parameters:
+  fixture_hash: $2y$13$H94sbmNgVdhxmDelYm24YuE9COD5ceRDdZ4vtwjg3M61DDDYozqyi
+
+App\Entity\User:
+  user_1:
+    name: Victor Todoran
+    email: victor@test.com
+    password: <{fixture_hash}>
+
+App\Entity\Subscription:
+  subscription_1:
+    name: Some Subscription
+    description: Some Description
+    duration: 1
+    price: 100
+  subscription_2:
+    name: Another Subscription
+    description: Another Description
+    duration: 2
+    price: 200
+
+App\Entity\UserSubscription:
+  user_subscription_1:
+    user: '@user_1'
+    subscription: '@subscription_1'
+    status: 2
+    startDate: <(new DateTimeImmutable("2023-01-01"))>
+    endDate: <(new DateTimeImmutable("2023-01-31"))>

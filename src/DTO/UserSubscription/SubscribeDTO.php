@@ -17,6 +17,7 @@ class SubscribeDTO
     use RequestContentDecoder;
 
     public function __construct(
+        #[Ignore]
         public readonly int $subscriptionId,
         #[Ignore]
         public readonly User $user,

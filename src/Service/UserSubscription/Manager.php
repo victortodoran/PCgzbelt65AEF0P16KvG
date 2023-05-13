@@ -43,15 +43,16 @@ class Manager
         if (null === $subscription) {
             throw new NotFoundException('Subscription not found');
         }
-
         $existingUserSubscription = $this->userSubscriptionRepository->findExistingActiveUserSubscription(
             $subscribeDTO->user,
             $subscription
         );
+
         $existingUserSubscription?->setStatus(UserSubscriptionStatus::CANCELED);
 
         $newUserSubscription = new UserSubscription();
         $newUserSubscription->setUser($subscribeDTO->user);
+        $newUserSubscription->setStatus(UserSubscriptionStatus::ACTIVE);
         $newUserSubscription->setSubscription($subscription);
         $newUserSubscription->setStartDate($subscribeDTO->startDate);
         $newUserSubscription->setEndDate($subscribeDTO->endDate);

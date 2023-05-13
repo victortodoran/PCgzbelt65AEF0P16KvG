@@ -33,7 +33,7 @@ class UserSubscriptionRepository extends ServiceEntityRepository
 
         $qb->andWhere('us.user = :user')
             ->setParameter('user', $user)
-            ->andWhere('subscription = :subscription')
+            ->andWhere('us.subscription = :subscription')
             ->setParameter('subscription', $subscription)
             ->andWhere('us.status = :status')
             ->setParameter('status', UserSubscriptionStatus::ACTIVE)
