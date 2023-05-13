@@ -41,6 +41,7 @@ security:
         - { path: ^/api/subscriptions/me, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/subscriptions/(\d+)/(subscribe|unsubscribe), roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/subscriptions, roles: PUBLIC_ACCESS }
+        - { path: ^/api/(doc.json|doc), roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:

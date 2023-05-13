@@ -1,0 +1,59 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Subscription Management System
+            description: Subscription Management System
+            version: 1.0.0
+        components:
+            securitySchemes:
+                BearerAuth:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        security:
+            - BearerAuth: []
+
+        paths:
+            /api/auth/login:
+                post:
+                    tags:
+                        - Auth
+                    summary: Login and retrieve access token
+                    requestBody:
+                        content:
+                            application/json:
+                                schema:
+                                    properties:
+                                        username:
+                                            type: string
+                                            example: user@email.com
+                                        password:
+                                            type: string
+                                            example: Secret123@
+                                    type: object
+                    responses:
+                        '200':
+                            description: OK
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                                example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2ODM5MTAzNDcsImV4cCI6MTY4MzkxMzk0Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidmljdG9yQHRlc3QuY29tIn0.Y3jP5EEzx2HpvJVQWh0ZNOFt99FLnILCKx40Sepg9N8_56mpejjx7IUqAJ7vzeCiSOtLjgPkv1kv3XTIXbO1rBaQblu7mF_KuQPIKuSgQAeT5qXscZC-omvPAcpaDiE_h0lx4m4K59yd3-GsEBYHlMg-2IJbKAJN3B6JdT5IMbe7RH2Bt11Z9aIZyfimZXnxsCULPC6KzZc7OxXx8F_1Bfj5cxM2M7EROCacHf_Y6P0fLFMqtI4nwp00twa7WEb1keF2rkOsInLKzAOrOVQCV6UrUJJk9YntR6bZoL0-q-qwsDVPnh9LMJ-mrvazXcHHoD5ip0dD-JzCGyITgePDag
+                        '401':
+                            description: Invalid credentials
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: integer
+                                            message:
+                                                type: string
+    areas:
+        path_patterns: # an array of regexps (document only routes under /api, except /api/doc)
+            - ^/api(?!/doc)
+

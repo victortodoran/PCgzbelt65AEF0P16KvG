@@ -19,7 +19,9 @@ class PaymentDTO
         #[Assert\NotBlank(message: 'The \'cardNumber\' can not be blank.')]
         public readonly string $cardNumber,
         #[Assert\NotBlank(message: 'The \'ccv\' can not be blank.')]
-        public readonly string $ccv
+        public readonly string $ccv,
+        #[Assert\GreaterThan(value: 0, message: 'The payment value must be greater than 0')]
+        public readonly float $value
     ) {
     }
 
@@ -29,12 +31,13 @@ class PaymentDTO
     public static function createFromRequestContent(string $requestContent): self
     {
         $requestContentAsArray = self::requestContentToArray($requestContent);
-        self::checkRequestHasParam($requestContentAsArray, ['cardHolderName', 'cardNumber', 'ccv']);
+        self::checkRequestHasParam($requestContentAsArray, ['cardHolderName', 'cardNumber', 'ccv', 'value']);
 
         return new self(
             $requestContentAsArray['cardHolderName'],
             $requestContentAsArray['cardNumber'],
-            $requestContentAsArray['ccv']
+            $requestContentAsArray['ccv'],
+            (float) $requestContentAsArray['value']
         );
     }
 }
